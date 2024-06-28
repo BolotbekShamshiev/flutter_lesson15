@@ -28,7 +28,7 @@ class CommonText3 extends StatelessWidget {
         Icon(
           Icons.phone,
           color: color ?? Colors.white,
-        )
+        ),
       ],
     );
   }

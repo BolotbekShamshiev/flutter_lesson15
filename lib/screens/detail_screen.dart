@@ -1,15 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:lesson15_practice/models/user_model.dart';
 import 'package:lesson15_practice/widgets/common_text2.dart';
 import 'package:lesson15_practice/widgets/common_text3.dart';
 
-class DetailScreen extends StatefulWidget {
-  const DetailScreen({super.key});
+class DetailScreen extends StatelessWidget {
+  final UserModel userModel;
 
-  @override
-  State<DetailScreen> createState() => _DetailScreenState();
-}
+  const DetailScreen({
+    Key? key,
+    required this.userModel,
+  }) : super(key: key);
 
-class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,18 +30,18 @@ class _DetailScreenState extends State<DetailScreen> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
               children: [
                 Image.asset(
-                  'assets/images/ava1.png',
+                  userModel.imageUrl,
                   width: 114,
                   height: 114,
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'Жыпаркулов Мырзабек Жыпаркулович',
+                  userModel.fullName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24,
@@ -47,7 +50,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'Генеральный директор',
+                  userModel.position ?? '',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
@@ -61,21 +64,21 @@ class _DetailScreenState extends State<DetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CommonText2(title: 'Направление'),
-                CommonText3(title: 'Дирекция управления'),
+                CommonText3(title: userModel.direction ?? ''),
                 SizedBox(height: 30),
                 CommonText2(title: 'Отдел'),
-                CommonText3(title: 'Отдел управления'),
+                CommonText3(title: userModel.department ?? ''),
                 SizedBox(height: 30),
                 CommonText2(title: 'Email'),
-                CommonText3(title: 'mjyparkulov@gosecotech.kg'),
+                CommonText3(title: userModel.email ?? ''),
                 SizedBox(height: 30),
                 CommonText2(title: 'Дата рождения'),
-                CommonText3(title: '16.09.1972'),
+                CommonText3(title: userModel.dateOfBirth ?? ''),
                 SizedBox(height: 30),
                 CommonText2(title: 'Телефон основной'),
                 CommonText3(
-                  title: '+996702345678',
-                  color: Color(0xff36CD72),
+                  title: userModel.phoneNumber ?? '',
+                  color: Colors.green,
                 ),
               ],
             ),
